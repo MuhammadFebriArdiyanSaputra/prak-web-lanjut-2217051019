@@ -41,8 +41,8 @@
         <h3>Kartu Mahasiswa</h3>
         <img src="{{ asset('assets/img/febri.jpg') }}">
         <div>Nama : <?= $nama ?></div>
-        <div>Kelas : <?= $kelas ?></div>
         <div>NPM : <?= $npm ?></div>
+        <div>Kelas : <?= $kelas ?></div>
     </div>
 </body>
 </html>
