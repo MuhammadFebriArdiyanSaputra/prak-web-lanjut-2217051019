@@ -42,7 +42,7 @@
         <img src="{{ asset('assets/img/febri.jpg') }}">
         <div>Nama : <?= $nama ?></div>
         <div>NPM : <?= $npm ?></div>
-        <div>Kelas : <?= $kelas ?></div>
+        <div>Kelas : <?= $nama_kelas ?? 'Kelas tidak ditemukan' ?></div>
     </div>
 </body>
 </html>

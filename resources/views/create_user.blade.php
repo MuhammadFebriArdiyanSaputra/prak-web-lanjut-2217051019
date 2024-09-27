@@ -18,19 +18,9 @@
 
             <form action="{{ url('/user/store') }}" method="POST">
                 @csrf
-                <div class="mb-3">
-                    <label for="nama" class="form-label">Nama:</label>
-                    <input type="text" name="nama" class="form-control" id="nama" required>
-                </div>
-                <div class="mb-3">
-                    <label for="npm" class="form-label">NPM:</label>
-                    <input type="text" name="npm" class="form-control" id="npm" required>
-                </div>
-                <div class="mb-3">
-                    <label for="kelas" class="form-label">Kelas:</label>
-                    <input type="text" name="kelas" class="form-control" id="kelas" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Submit</button>
+
+                @include('_form')
+
             </form>
         </div>
     </div>
