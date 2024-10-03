@@ -25,3 +25,8 @@ Route::get('/user/profile/{nama}/{kelas}/{npm}',[UserController::class, 'profile
 
 Route::get('/user/create', [UserController::class,'create']);
 Route::post('/user/store', [UserController::class,'store'])->name('user.store');
+
+Route::get('/user', [UserController::class, 'index']);
+
+Route::get('user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+Route::delete('user/{id}', [UserController::class, 'destroy'])->name('user.destroy');

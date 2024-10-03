@@ -1,0 +1,98 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1em;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+    background-color: #4caf50;
+    color: white;
+}
+
+th,
+td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+th {
+    background-color: #4caf50;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center; /* Pusatkan teks judul di th */
+    border-left: 1px solid #ddd; /* Garis pemisah vertikal */
+}
+
+td:last-child {
+    text-align: center;
+    border-right: 1px solid #ddd; /* Garis pemisah vertikal */
+}
+
+/* Garis pemisah vertikal di kolom */
+td:nth-child(2),
+td:nth-child(3),
+td:nth-child(4),
+td:nth-child(5),
+th:nth-child(2),
+th:nth-child(3),
+th:nth-child(4),
+th:nth-child(5) {
+    border-left: 1px solid #ddd; /* Tambahkan garis kiri di semua kolom */
+}
+
+td a {
+    padding: 6px 12px;
+    text-decoration: none;
+    background-color: #3498db;
+    color: white;
+    border-radius: 5px;
+}
+
+td a:hover {
+    background-color: #2980b9;
+}
+
+td a.btn {
+    padding: 6px 12px;
+    margin-right: 5px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 0.9em;
+}
+
+td .btn-edit {
+    background-color: #3498db;
+}
+
+td .btn-delete {
+    background-color: #e74c3c;
+    border: none;
+    cursor: pointer;
+}
+
+td .btn:hover {
+    opacity: 0.9;
+}
+
+td form {
+    display: inline-block;
+}
+
+td form button.btn-delete:hover {
+    background-color: #c0392b;
+}
