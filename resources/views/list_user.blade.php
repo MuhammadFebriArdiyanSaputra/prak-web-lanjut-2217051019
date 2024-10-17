@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="mb-3">
+    <a href="{{ route('user.create') }}" class="btn btn-primary">Tambah User</a>
+</div><br>
+
+<h2 style="text-align: center;">List Data</h2><br>
+
+
 <table>
     <thead>
         <tr>
