@@ -13,7 +13,7 @@ class UserController extends Controller
     public $userModel;
     public $kelasModel;
 
-    public function __contruct(){
+    public function __construct(){
         $this->userModel = new UserModel();
         $this->kelasModel = new Kelas();
     }
@@ -23,7 +23,7 @@ class UserController extends Controller
         $this->userModel = new UserModel();
 
         $data = [
-            'title' => 'Create User',
+            'title' => 'List User',
             'users' => $this->userModel->getUser(),
         ];
 
@@ -97,5 +97,48 @@ class UserController extends Controller
         return view('View_User',compact('user', 'kelas', 'title'));
     }
 
+    public function edit($id){
+    
+        // Menggunakan findOrFail agar langsung mengembalikan 404 jika tidak ada data
+        $user = $this->userModel->findOrFail($id); 
+        
+        // Mendapatkan daftar kelas
+        $kelas = $this->kelasModel->all(); // Mengambil semua kelas, bukan hanya yang terpilih
+    
+        $title = 'Edit User';
+    
+        return view('edit_user', compact('user', 'kelas', 'title'));
+    }
+    
+
+    public function update(Request $request, $id){
+
+        $this->userModel = new UserModel(); 
+        $user = $this->userModel->findOrFail($id);
+
+        $user->nama = $request->nama;
+        $user->npm = $request->npm;
+        $user->kelas_id = $request->kelas_id;
+
+
+        if ($request->hasFile('foto')) {
+            $fileName = time() . '.' . $request->foto->extension();
+            $request->foto->move(public_path('uploads '), $fileName);
+            $user->foto = 'uploads/' .$fileName;
+        }
+        $user->save();
+        return redirect()->route('user.list')->with('success', 'User updated successfully');
+    }
+
+    public function destroy($id){
+
+        $this->userModel = new UserModel(); 
+
+        $user = $this->userModel->findOrFail($id);
+        
+        $user->delete();
+
+        return redirect()->route('user.list')->with('success', 'User has been deleted successfully');
+    }
 
 }
