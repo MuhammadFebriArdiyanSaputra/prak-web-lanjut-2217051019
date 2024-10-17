@@ -8,6 +8,7 @@
         <th>Nama</th>
         <th>NPM</th>
         <th>Kelas</th>
+        <th>Foto</th>
         <th>Aksi</th>
         </tr>
     </thead>
@@ -19,6 +20,10 @@
         <td>{{ $user['npm'] }}</td>
         <td>{{ $user['nama_kelas'] }}</td>
         <td>
+            <img src="{{ asset('storage/uploads/' . $user->foto) }}" alt="Foto User" width="100">
+        </td>
+        <td>
+            <a href="{{ route('user.view', $user->id) }}" class="btn btn-info">View</a>
             <a href="{{ route('user.edit', $user['id']) }}" class="btn btn-edit">Edit</a>
             <form action="{{ route('user.destroy', $user['id']) }}" method="POST" style="display:inline-block;">
                 @csrf
