@@ -7,7 +7,7 @@
         <div class="p-4 border rounded bg-light shadow-sm w-50">
             <h2 class="text-center mb-4">Form Input Mahasiswa</h2>
 
-        <form action="{{ route('user.store') }}" method="POST">
+        <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">
@@ -31,10 +31,16 @@
                         <option value="{{$kelasItem->id}}">{{$kelasItem->nama_kelas}}</option>
                     @endforeach
                 </select>
-                @error('npm')
+                @error('kelas')
                     <div class="text-danger">{{$message}}</div>
                 @enderror
             </div>
+
+            <div class="mb-3">
+                <label for="foto" class="form-label">Foto</label>
+                <input class="form-control" type="file" id="foto" name="foto">
+            </div>
+
             <button type="submit" class="btn btn-primary w-100">Submit</button>
 
         </form>

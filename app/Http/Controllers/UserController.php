@@ -41,46 +41,61 @@ class UserController extends Controller
     }
 
     public function create(){
-
         $kelasModel = new Kelas();
-
-        $kelas = $this->kelasModel->getKelas();
-
-        $data =[
+    
+        // Mengambil data kelas menggunakan method getKelas
+        $kelas = $kelasModel->getKelas();
+    
+        $data = [
             'title' => 'Create User',
             'kelas' => $kelas,
         ];
-
-        return view('create_user',$data);
-
-        // return view('create_user', ['kelas' => Kelas::all(), ]);
+    
+        return view('create_user', $data);
     }
 
     public function store(Request $request){
-        $this->userModel->create([
-            'nama' => $request->input('nama'),
-            'npm' =>  $request->input('npm'),
-            'kelas_id' => $request->input('kelas_id'),
+            // Validasi input
+        $request->validate([
+            'nama' => 'required',
+            'npm' => 'required',
+            'kelas_id' => 'required',
+            'foto' => 'image|file|max:2048', // Validasi foto
         ]);
 
+        // Proses upload foto
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('uploads', $filename); // Menyimpan file ke storage
+
+            $this->userModel = new UserModel(); 
+
+            // Simpan data user ke database
+            $this->userModel->create([
+                'nama' => $request->input('nama'),
+                'npm' => $request->input('npm'),
+                'kelas_id' => $request->input('kelas_id'),
+                'foto' => $filename ?? null, // Menyimpan nama file ke database
+            ]);
+        }
         return redirect()->to('/user');
-
-        // $validatedData = $request->validate([
-        //     'nama' => 'required|string|max:255',
-        //     'npm' =>  'required|string|max:255',
-        //     'kelas_id' =>'required|exists:kelas,id',
-        // ]);
-
-        // $user = UserModel::create($validatedData);
-
-        // $user->load('kelas');
-
-        // return view('profile', [
-        //     'nama' => $user->nama,
-        //     'npm' => $user->npm,
-        //     'nama_kelas' => $user->kelas->nama_kelas ?? 'Kelas tidak ditemukan',
-        // ]);
-
     }
+
+    public function view($id){
+
+        $this->userModel = new UserModel(); 
+
+        $this->kelasModel = new Kelas();
+
+        $user = $this->userModel->findOrFail($id);
+        
+        $kelas = $this->kelasModel->find($user->kelas_id);
+
+        $title = 'View User';
+
+        return view('View_User',compact('user', 'kelas', 'title'));
+    }
+
 
 }
