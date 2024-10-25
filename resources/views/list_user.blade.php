@@ -15,6 +15,8 @@
         <th>Nama</th>
         <th>NPM</th>
         <th>Kelas</th>
+        <th>Jurusan</th>
+        <th>Fakultas</th>
         <th>Foto</th>
         <th>Aksi</th>
         </tr>
@@ -26,6 +28,8 @@
         <td>{{ $user['nama'] }}</td>
         <td>{{ $user['npm'] }}</td>
         <td>{{ $user['nama_kelas'] }}</td>
+        <td>{{ $user->jurusan->nama_jurusan ?? 'N/A' }}</td>
+        <td>{{ $user->jurusan->fakultas->nama_fakultas ?? 'N/A'}}</td>
         <td>
             <img src="{{ asset('storage/uploads/' . $user->foto) }}" alt="Foto User" width="100">
         </td>

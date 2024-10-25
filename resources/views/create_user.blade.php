@@ -37,6 +37,18 @@
             </div>
 
             <div class="mb-3">
+                <label for="jurusan" class="form-label">Jurusan:</label>
+                <select name="jurusan_id" id="jurusan_id">
+                    @foreach($jurusan as $jrsn) 
+                        <option value="{{$jrsn->id}}">{{$jrsn->nama_jurusan}}</option>
+                    @endforeach
+                </select>
+                @error('jurusan')
+                    <div class="text-danger">{{$message}}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
                 <label for="foto" class="form-label">Foto</label>
                 <input class="form-control" type="file" id="foto" name="foto">
             </div>
